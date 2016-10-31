@@ -1,6 +1,7 @@
 SampleApp::Application.routes.draw do
   resources :users
-
+  resources :sessions, only: [:new, :create, :destroy]
+  
   root to: 'static_pages#home'
   
   match '/signup',  to: 'users#new'
@@ -17,7 +18,10 @@ SampleApp::Application.routes.draw do
   #get "static_pages/contact"
   match '/contact', to: 'static_pages#contact' 
   
+  match '/signin',  to: 'sessions#new'
+  match '/signout', to: 'sessions#destroy', via: :delete
   
+
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
